@@ -3,17 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.contrastofbeauty.tutorial</groupId>
-    <artifactId>test-collaborators</artifactId>
+    <artifactId>exercise-working</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
-    <name>tutorial-howtotest-1-collectors</name>
+    <name>tutorial-howtotest-1-collectors :: exercise-working</name>
     <url>https://github.com/blackat/tutorial-howtotest-1-collectors</url>
-
-    <modules>
-        <module>exercise-working</module>
-        <module>exercise-to-be-corrected</module>
-    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

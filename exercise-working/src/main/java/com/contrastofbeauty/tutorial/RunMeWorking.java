@@ -6,7 +6,7 @@ import com.contrastofbeauty.tutorial.domain.Tweet;
 import com.contrastofbeauty.tutorial.services.CloudService;
 import com.contrastofbeauty.tutorial.services.interfaces.Service;
 
-public class RunMe {
+public class RunMeWorking {
 
     public static void main(String[] args) {
 

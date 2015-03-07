@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -83,6 +84,7 @@ public class CloudServiceTest {
     @Test
     public void testSaveObjectGoldenPath() throws Exception {
         //TODO
+        assertTrue(true);
     }
 
     @Test
@@ -91,6 +93,6 @@ public class CloudServiceTest {
         exception.expectMessage("User with id " + USER_ID + " has not open any connection, please open a connection " +
                 "before trying to save.");
 
-        cloudService.saveObject(any(Callable.class), USER_ID);
+        cloudService.saveObject(mock(Callable.class), USER_ID);
     }
 }

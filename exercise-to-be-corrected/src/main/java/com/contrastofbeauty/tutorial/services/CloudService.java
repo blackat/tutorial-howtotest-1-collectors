@@ -88,7 +88,7 @@ public class CloudService implements Service {
 
         boolean accepted = false;
 
-        if(processingFutureList.get(userId) == null) {
+        if (processingFutureList.get(userId) == null) {
             throw new IllegalArgumentException("User with id " + userId + " has not open any connection, please open " +
                     "a connection before trying to save.");
         }
