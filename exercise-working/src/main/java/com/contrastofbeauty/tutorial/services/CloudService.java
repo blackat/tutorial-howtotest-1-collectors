@@ -73,9 +73,7 @@ public class CloudService implements Service {
 
     @Override
     public boolean isUserConnected(long userId) throws RuntimeException {
-        if(processingFutureList == null) {
-            throw new IllegalArgumentException("Cloud Service not initialized yet.");
-        }
+
         return processingFutureList.get(userId) != null;
     }
 
@@ -110,7 +108,9 @@ public class CloudService implements Service {
     @Override
     public void saveObjectCompleted(Target target, long userId) throws RuntimeException {
 
-        isUserConnected(userId);
+        if (!isUserConnected(userId)) {
+            throw new IllegalArgumentException("User with id " + userId + " has not open any connection, please open a connection before trying to save.");
+        }
 
         // call flush method to force not completed collections to be processed
         for (Collector collector : processingCollectors) {
@@ -126,14 +126,16 @@ public class CloudService implements Service {
                 LOGGER.info(taskResult + " tweets have been posted to Twitter.");
             } catch (InterruptedException e) {
                 LOGGER.error(e);
+                target.sendAckFailed(new RuntimeException(e));
             } catch (ExecutionException e) {
                 LOGGER.error(e);
+                target.sendAckFailed(new RuntimeException(e));
             }
         }
 
         // execute some optional post processing once data have been saved
-        for (Collector mySaver : processingCollectors) {
-            mySaver.postFlush(userId);
+        for (Collector collector : processingCollectors) {
+            collector.postFlush(userId);
         }
 
         LOGGER.info("cloud service has finished the work for process id " + userId + ".");

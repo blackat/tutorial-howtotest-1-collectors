@@ -1,13 +1,13 @@
 package com.contrastofbeauty.tutorial.collectors;
 
+import com.contrastofbeauty.tutorial.api.collectors.Collector;
+import com.contrastofbeauty.tutorial.api.domain.Callback;
+import com.contrastofbeauty.tutorial.domain.Tweet;
+import com.contrastofbeauty.tutorial.domain.TweetTask;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.contrastofbeauty.tutorial.api.collectors.Collector;
-import com.contrastofbeauty.tutorial.domain.Tweet;
-import com.contrastofbeauty.tutorial.domain.TweetTask;
-import com.contrastofbeauty.tutorial.api.domain.Callback;
 
 public class TweetCollector implements Collector {
 

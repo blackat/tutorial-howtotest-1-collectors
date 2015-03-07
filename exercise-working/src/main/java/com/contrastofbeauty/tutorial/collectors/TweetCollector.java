@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 public class TweetCollector implements Collector {
 
@@ -52,7 +53,7 @@ public class TweetCollector implements Collector {
 
     @Override
     public void flush(long userId) {
-        TweetTask tweetTask = new TweetTask(new ArrayList<>(processingList.get(userId)));
+        TweetTask tweetTask = (TweetTask) getTweetTask(userId);
 
         // clean the list
         processingList.get(userId).clear();
@@ -63,6 +64,10 @@ public class TweetCollector implements Collector {
         } else {
             throw new IllegalArgumentException("Callback function must be set by the service.");
         }
+    }
+
+    public Callable<Long> getTweetTask(long userId) {
+        return new TweetTask(new ArrayList<>(processingList.get(userId)));
     }
 
     @Override
