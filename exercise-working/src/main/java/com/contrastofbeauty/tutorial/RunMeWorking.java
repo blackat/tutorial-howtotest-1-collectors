@@ -1,6 +1,8 @@
 package com.contrastofbeauty.tutorial;
 
+import com.contrastofbeauty.tutorial.api.domain.Callback;
 import com.contrastofbeauty.tutorial.collectors.TweetCollector;
+import com.contrastofbeauty.tutorial.domain.CallbackImpl;
 import com.contrastofbeauty.tutorial.domain.TargetImpl;
 import com.contrastofbeauty.tutorial.domain.Tweet;
 import com.contrastofbeauty.tutorial.services.CloudService;
@@ -10,7 +12,8 @@ public class RunMeWorking {
 
     public static void main(String[] args) {
 
-        Service service = new CloudService();
+        Callback callback = new CallbackImpl();
+        Service service = new CloudService(callback);
 
         service.addCollector(new TweetCollector());
 

@@ -1,8 +1,9 @@
 package com.contrastofbeauty.tutorial.services;
 
-import com.contrastofbeauty.tutorial.collectors.TweetCollector;
 import com.contrastofbeauty.tutorial.api.domain.Callback;
 import com.contrastofbeauty.tutorial.api.services.Service;
+import com.contrastofbeauty.tutorial.collectors.TweetCollector;
+import com.contrastofbeauty.tutorial.domain.TweetTask;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.Before;
@@ -28,6 +29,12 @@ public class CloudServiceTest {
     @Mock
     private TweetCollector tweetCollectorMock;
 
+    @Mock
+    private TweetTask tweetTaskMock;
+
+    @Mock
+    private Callback callbackMock;
+
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
@@ -35,7 +42,7 @@ public class CloudServiceTest {
     public void setUp() throws Exception
     {
         MockitoAnnotations.initMocks(this);
-        cloudService = new CloudService();
+        cloudService = new CloudService(callbackMock);
     }
 
     @Test
@@ -83,8 +90,12 @@ public class CloudServiceTest {
 
     @Test
     public void testSaveObjectGoldenPath() throws Exception {
-        //TODO
-        assertTrue(true);
+
+        verify(tweetTaskMock, times(1)).call();
+
+        cloudService.openConnection(USER_ID);
+
+        cloudService.saveObject(tweetTaskMock, USER_ID);
     }
 
     @Test

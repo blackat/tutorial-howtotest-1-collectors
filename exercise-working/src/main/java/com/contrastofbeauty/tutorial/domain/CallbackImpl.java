@@ -10,10 +10,6 @@ public class CallbackImpl implements Callback<TweetTask> {
 
     private Service cloudService;
 
-    public CallbackImpl(Service service) {
-        cloudService = service;
-    }
-
     @Override
     public void addTask(TweetTask tweetTask, long userId) {
 
@@ -21,5 +17,10 @@ public class CallbackImpl implements Callback<TweetTask> {
             cloudService.submitTask(tweetTask, userId);
             LOGGER.info("task submitted to the cloud service (" + tweetTask.toString() + ").");
         }
+    }
+
+    @Override
+    public void setService(Service service) {
+        cloudService = service;
     }
 }

@@ -22,4 +22,9 @@ public class CallbackImpl implements Callback<TweetTask> {
             LOGGER.info("task submitted to the cloud service (" + tweetTask.toString() + ").");
         }
     }
+
+    @Override
+    public void setService(Service service) {
+
+    }
 }

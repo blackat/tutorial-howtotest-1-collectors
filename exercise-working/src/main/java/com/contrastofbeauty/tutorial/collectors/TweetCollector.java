@@ -43,7 +43,7 @@ public class TweetCollector implements Collector {
                 flush(userId);
             }
 
-            // 2) error: remove the return to have the eception - REMOVE THIS LINE TO HAVE THE ERROR
+            // 2) error: remove the return to have the exception - REMOVE THIS LINE TO HAVE THE ERROR
             return true;
         }
 

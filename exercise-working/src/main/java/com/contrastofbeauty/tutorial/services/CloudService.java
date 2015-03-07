@@ -1,7 +1,6 @@
 package com.contrastofbeauty.tutorial.services;
 
 import com.contrastofbeauty.tutorial.api.collectors.Collector;
-import com.contrastofbeauty.tutorial.domain.CallbackImpl;
 import com.contrastofbeauty.tutorial.api.domain.Callback;
 import com.contrastofbeauty.tutorial.api.domain.Target;
 import com.contrastofbeauty.tutorial.api.services.Service;
@@ -28,15 +27,18 @@ public class CloudService implements Service {
 
     private Map<Long, List<Future>> processingFutureList;
 
-    private Callback callbackFunction = new CallbackImpl(this);
+    private Callback callbackFunction;
 
-    public CloudService() {
+    public CloudService(Callback callback) {
 
         // 3) error: NPE will be produce without init the map - - REMOVE THIS LINE TO HAVE THE ERROR
         processingFutureList = new HashMap<>();
 
         // 4) error: NPE will be produce without init the map - - REMOVE THIS LINE TO HAVE THE ERROR
         processingCollectors = new ArrayList<>();
+
+        callbackFunction = callback;
+        callbackFunction.setService(this);
     }
 
     @Override
