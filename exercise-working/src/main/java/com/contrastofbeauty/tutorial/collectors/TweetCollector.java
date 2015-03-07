@@ -1,9 +1,9 @@
 package com.contrastofbeauty.tutorial.collectors;
 
-import com.contrastofbeauty.tutorial.collectors.interfaces.Collector;
+import com.contrastofbeauty.tutorial.api.collectors.Collector;
 import com.contrastofbeauty.tutorial.domain.Tweet;
 import com.contrastofbeauty.tutorial.domain.TweetTask;
-import com.contrastofbeauty.tutorial.domain.interfaces.Callback;
+import com.contrastofbeauty.tutorial.api.domain.Callback;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

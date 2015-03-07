@@ -1,8 +1,8 @@
 package com.contrastofbeauty.tutorial.services;
 
 import com.contrastofbeauty.tutorial.collectors.TweetCollector;
-import com.contrastofbeauty.tutorial.domain.interfaces.Callback;
-import com.contrastofbeauty.tutorial.services.interfaces.Service;
+import com.contrastofbeauty.tutorial.api.domain.Callback;
+import com.contrastofbeauty.tutorial.api.services.Service;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.Before;
@@ -85,6 +85,11 @@ public class CloudServiceTest {
     public void testSaveObjectGoldenPath() throws Exception {
         //TODO
         assertTrue(true);
+    }
+
+    @Test
+    public void testSaveObjectCompleted() throws Exception {
+
     }
 
     @Test

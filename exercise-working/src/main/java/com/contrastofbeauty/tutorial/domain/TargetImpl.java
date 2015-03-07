@@ -1,6 +1,6 @@
 package com.contrastofbeauty.tutorial.domain;
 
-import com.contrastofbeauty.tutorial.domain.interfaces.Target;
+import com.contrastofbeauty.tutorial.api.domain.Target;
 import org.apache.log4j.Logger;
 
 public class TargetImpl implements Target {

@@ -1,10 +1,10 @@
 package com.contrastofbeauty.tutorial.services;
 
-import com.contrastofbeauty.tutorial.collectors.interfaces.Collector;
+import com.contrastofbeauty.tutorial.api.collectors.Collector;
 import com.contrastofbeauty.tutorial.domain.CallbackImpl;
-import com.contrastofbeauty.tutorial.domain.interfaces.Callback;
-import com.contrastofbeauty.tutorial.domain.interfaces.Target;
-import com.contrastofbeauty.tutorial.services.interfaces.Service;
+import com.contrastofbeauty.tutorial.api.domain.Callback;
+import com.contrastofbeauty.tutorial.api.domain.Target;
+import com.contrastofbeauty.tutorial.api.services.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,6 +71,9 @@ public class CloudService implements Service {
 
     @Override
     public boolean isUserConnected(long userId) throws RuntimeException {
+        if(processingFutureList == null) {
+            throw new IllegalArgumentException("Cloud Service not initialized yet.");
+        }
         return processingFutureList.get(userId) != null;
     }
 
@@ -88,9 +91,8 @@ public class CloudService implements Service {
 
         boolean accepted = false;
 
-        if (processingFutureList.get(userId) == null) {
-            throw new IllegalArgumentException("User with id " + userId + " has not open any connection, please open " +
-                    "a connection before trying to save.");
+        if (!isUserConnected(userId)) {
+            throw new IllegalArgumentException("User with id " + userId + " has not open any connection, please open a connection before trying to save.");
         }
 
         for (Collector collector : processingCollectors) {
@@ -105,6 +107,8 @@ public class CloudService implements Service {
 
     @Override
     public void saveObjectCompleted(Target target, long userId) throws RuntimeException {
+
+        isUserConnected(userId);
 
         // call flush method to force not completed collections to be processed
         for (Collector collector : processingCollectors) {

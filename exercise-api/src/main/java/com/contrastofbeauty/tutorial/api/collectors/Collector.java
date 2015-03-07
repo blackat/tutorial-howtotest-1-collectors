@@ -1,6 +1,6 @@
-package com.contrastofbeauty.tutorial.collectors.interfaces;
+package com.contrastofbeauty.tutorial.api.collectors;
 
-import com.contrastofbeauty.tutorial.domain.interfaces.Callback;
+import com.contrastofbeauty.tutorial.api.domain.Callback;
 
 public interface Collector {
 

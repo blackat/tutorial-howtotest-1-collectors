@@ -2,42 +2,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.contrastofbeauty.tutorial</groupId>
+    <parent>
+        <groupId>com.contrastofbeauty.tutorial</groupId>
+        <artifactId>tutorial-howtotest-1-collectors</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
     <artifactId>exercise-to-be-corrected</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>tutorial-howtotest-1-collectors :: exercise-to-be-corrected</name>
-    <url>https://github.com/blackat/tutorial-howtotest-1-collectors</url>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <log4j.version>1.2.17</log4j.version>
-        <junit.version>4.12</junit.version>
-        <mockito.all.version>1.10.19</mockito.all.version>
-    </properties>
 
     <dependencies>
-
-        <!-- Logging Framewors -->
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4j.version}</version>
-        </dependency>
-
-        <!-- Testing Frameworks -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>${mockito.all.version}</version>
-            <scope>test</scope>
+            <groupId>com.contrastofbeauty.tutorial</groupId>
+            <artifactId>exercise-api</artifactId>
         </dependency>
     </dependencies>
 </project>

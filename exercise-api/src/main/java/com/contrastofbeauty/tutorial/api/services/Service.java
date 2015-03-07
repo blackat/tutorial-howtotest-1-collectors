@@ -1,7 +1,7 @@
-package com.contrastofbeauty.tutorial.services.interfaces;
+package com.contrastofbeauty.tutorial.api.services;
 
-import com.contrastofbeauty.tutorial.collectors.interfaces.Collector;
-import com.contrastofbeauty.tutorial.domain.interfaces.Target;
+import com.contrastofbeauty.tutorial.api.collectors.Collector;
+import com.contrastofbeauty.tutorial.api.domain.Target;
 import java.util.concurrent.Callable;
 
 public interface Service {

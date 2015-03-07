@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.contrastofbeauty.tutorial.collectors.interfaces.Collector;
+import com.contrastofbeauty.tutorial.api.collectors.Collector;
 import com.contrastofbeauty.tutorial.domain.Tweet;
 import com.contrastofbeauty.tutorial.domain.TweetTask;
-import com.contrastofbeauty.tutorial.domain.interfaces.Callback;
+import com.contrastofbeauty.tutorial.api.domain.Callback;
 
 public class TweetCollector implements Collector {
 

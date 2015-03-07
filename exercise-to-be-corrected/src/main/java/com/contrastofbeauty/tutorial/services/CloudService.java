@@ -1,10 +1,10 @@
 package com.contrastofbeauty.tutorial.services;
 
-import com.contrastofbeauty.tutorial.collectors.interfaces.Collector;
+import com.contrastofbeauty.tutorial.api.collectors.Collector;
 import com.contrastofbeauty.tutorial.domain.CallbackImpl;
-import com.contrastofbeauty.tutorial.domain.interfaces.Callback;
-import com.contrastofbeauty.tutorial.domain.interfaces.Target;
-import com.contrastofbeauty.tutorial.services.interfaces.Service;
+import com.contrastofbeauty.tutorial.api.domain.Callback;
+import com.contrastofbeauty.tutorial.api.domain.Target;
+import com.contrastofbeauty.tutorial.api.services.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

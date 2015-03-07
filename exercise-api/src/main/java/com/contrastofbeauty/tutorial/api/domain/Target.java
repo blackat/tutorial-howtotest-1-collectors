@@ -1,4 +1,4 @@
-package com.contrastofbeauty.tutorial.domain.interfaces;
+package com.contrastofbeauty.tutorial.api.domain;
 
 public interface Target {
 

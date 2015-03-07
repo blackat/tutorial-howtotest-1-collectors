@@ -1,10 +1,10 @@
 package com.contrastofbeauty.tutorial.domain;
 
-import com.contrastofbeauty.tutorial.domain.interfaces.Callback;
-import com.contrastofbeauty.tutorial.services.interfaces.Service;
+import com.contrastofbeauty.tutorial.api.domain.Callback;
+import com.contrastofbeauty.tutorial.api.services.Service;
 import org.apache.log4j.Logger;
 
-public class CallbackImpl implements Callback {
+public class CallbackImpl implements Callback<TweetTask> {
 
     private final static Logger LOGGER = Logger.getLogger(CallbackImpl.class);
 

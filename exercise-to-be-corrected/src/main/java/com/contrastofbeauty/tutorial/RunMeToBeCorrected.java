@@ -4,7 +4,7 @@ import com.contrastofbeauty.tutorial.collectors.TweetCollector;
 import com.contrastofbeauty.tutorial.domain.TargetImpl;
 import com.contrastofbeauty.tutorial.domain.Tweet;
 import com.contrastofbeauty.tutorial.services.CloudService;
-import com.contrastofbeauty.tutorial.services.interfaces.Service;
+import com.contrastofbeauty.tutorial.api.services.Service;
 
 public class RunMeToBeCorrected {
 
