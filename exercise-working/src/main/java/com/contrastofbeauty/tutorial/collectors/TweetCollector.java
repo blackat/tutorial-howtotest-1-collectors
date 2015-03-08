@@ -21,6 +21,7 @@ public class TweetCollector implements Collector {
     private int customBufferSize;
 
     public TweetCollector() {
+        // 0) Object not initialized
         processingList = new HashMap<>();
     }
 

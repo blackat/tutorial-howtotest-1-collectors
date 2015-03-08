@@ -5,7 +5,6 @@ import com.contrastofbeauty.tutorial.api.domain.Callback;
 import com.contrastofbeauty.tutorial.domain.Tweet;
 import com.contrastofbeauty.tutorial.domain.TweetTask;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,18 +19,13 @@ public class TweetCollector implements Collector {
     private int customBufferSize;
 
     public TweetCollector() {
-        processingList = new HashMap<>();
+
     }
 
     @Override
     public boolean accept(Object object, long userId) {
 
         if (object instanceof Tweet) {
-
-            // 1) error: object not initialized - REMOVE THIS LINE TO HAVE THE ERROR
-            if (processingList.get(userId) == null) {
-                processingList.put(userId, new ArrayList<Tweet>());
-            }
 
             processingList.get(userId).add((Tweet) object);
 
@@ -42,9 +36,6 @@ public class TweetCollector implements Collector {
             } else if (processingList.get(userId).size() == PROCESSING_LIST_BUFFER_SIZE) {
                 flush(userId);
             }
-
-            // 2) error: remove the return to have the eception - REMOVE THIS LINE TO HAVE THE ERROR
-            return true;
         }
 
         return false;
