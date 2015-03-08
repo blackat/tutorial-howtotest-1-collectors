@@ -1,6 +1,6 @@
 package com.contrastofbeauty.tutorial.api.domain;
 
-public interface Target {
+public interface AcknoledgeService {
 
     void sendAckFailed(RuntimeException exception);
 

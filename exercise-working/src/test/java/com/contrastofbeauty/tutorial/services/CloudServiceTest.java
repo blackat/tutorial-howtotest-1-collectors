@@ -2,7 +2,7 @@ package com.contrastofbeauty.tutorial.services;
 
 import com.contrastofbeauty.tutorial.api.collectors.Collector;
 import com.contrastofbeauty.tutorial.api.domain.Callback;
-import com.contrastofbeauty.tutorial.api.domain.Target;
+import com.contrastofbeauty.tutorial.api.domain.AcknoledgeService;
 import com.contrastofbeauty.tutorial.api.services.Service;
 import com.contrastofbeauty.tutorial.collectors.TweetCollector;
 import com.contrastofbeauty.tutorial.domain.CallbackImpl;
@@ -50,7 +50,7 @@ public class CloudServiceTest {
     private Callable tweetMock;
 
     @Mock
-    private Target targetMock;
+    private AcknoledgeService acknoledgeServiceMock;
 
     @Mock
     private TweetTask tweetTaskMock;
@@ -185,7 +185,7 @@ public class CloudServiceTest {
     @Test
     public void testSaveObjectCompletedGoldenPath() throws Exception {
 
-        doNothing().when(targetMock).sendAckSuccess();
+        doNothing().when(acknoledgeServiceMock).sendAckSuccess();
 
         TweetCollector spyOntweetCollector = spy(new TweetCollector());
         // if you call the real method there will be an exception, use doReturn for stubbing
@@ -198,15 +198,15 @@ public class CloudServiceTest {
 
         cloudService.saveObject(new Tweet("foo tweet"), USER_ID);
 
-        cloudService.saveObjectCompleted(targetMock, USER_ID);
+        cloudService.saveObjectCompleted(acknoledgeServiceMock, USER_ID);
 
         verify(tweetTaskMock, times(1)).call();
-        verify(targetMock, times(1)).sendAckSuccess();
+        verify(acknoledgeServiceMock, times(1)).sendAckSuccess();
     }
 
     @Test
     public void testSaveObjectCompletedExceptionThrown() throws Exception {
-        doNothing().when(targetMock).sendAckSuccess();
+        doNothing().when(acknoledgeServiceMock).sendAckSuccess();
 
         TweetCollector spyOntweetCollector = spy(new TweetCollector());
         // if you call the real method there will be an exception, use doReturn for stubbing
@@ -219,9 +219,9 @@ public class CloudServiceTest {
 
         cloudService.saveObject(new Tweet("foo tweet"), USER_ID);
 
-        cloudService.saveObjectCompleted(targetMock, USER_ID);
+        cloudService.saveObjectCompleted(acknoledgeServiceMock, USER_ID);
 
         verify(tweetTaskMock, times(1)).call();
-        verify(targetMock, times(1)).sendAckFailed(any(RuntimeException.class));
+        verify(acknoledgeServiceMock, times(1)).sendAckFailed(any(RuntimeException.class));
     }
 }

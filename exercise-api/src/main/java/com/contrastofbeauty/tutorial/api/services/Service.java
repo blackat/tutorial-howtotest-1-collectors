@@ -1,7 +1,7 @@
 package com.contrastofbeauty.tutorial.api.services;
 
 import com.contrastofbeauty.tutorial.api.collectors.Collector;
-import com.contrastofbeauty.tutorial.api.domain.Target;
+import com.contrastofbeauty.tutorial.api.domain.AcknoledgeService;
 import java.util.concurrent.Callable;
 
 public interface Service {
@@ -10,7 +10,7 @@ public interface Service {
 
     void saveObject(Object object, long processId) throws RuntimeException;
 
-    void saveObjectCompleted(Target target, long processId) throws RuntimeException;
+    void saveObjectCompleted(AcknoledgeService acknoledgeService, long processId) throws RuntimeException;
 
     void addCollector(Collector collector) throws RuntimeException;
 

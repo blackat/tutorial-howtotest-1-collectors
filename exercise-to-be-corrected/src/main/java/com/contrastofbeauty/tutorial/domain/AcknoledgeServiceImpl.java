@@ -1,13 +1,13 @@
 package com.contrastofbeauty.tutorial.domain;
 
-import com.contrastofbeauty.tutorial.api.domain.Target;
 import org.apache.log4j.Logger;
+import com.contrastofbeauty.tutorial.api.domain.AcknoledgeService;
 
-public class TargetImpl implements Target {
+public class AcknoledgeServiceImpl implements AcknoledgeService {
 
-    private final static Logger LOGGER = Logger.getLogger(TargetImpl.class);
+    private final static Logger LOGGER = Logger.getLogger(AcknoledgeServiceImpl.class);
 
-    public TargetImpl() {
+    public AcknoledgeServiceImpl() {
 
     }
 

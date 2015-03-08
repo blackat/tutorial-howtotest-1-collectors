@@ -3,7 +3,7 @@ package com.contrastofbeauty.tutorial.services;
 import com.contrastofbeauty.tutorial.api.collectors.Collector;
 import com.contrastofbeauty.tutorial.domain.CallbackImpl;
 import com.contrastofbeauty.tutorial.api.domain.Callback;
-import com.contrastofbeauty.tutorial.api.domain.Target;
+import com.contrastofbeauty.tutorial.api.domain.AcknoledgeService;
 import com.contrastofbeauty.tutorial.api.services.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,7 +104,7 @@ public class CloudService implements Service {
     }
 
     @Override
-    public void saveObjectCompleted(Target target, long userId) throws RuntimeException {
+    public void saveObjectCompleted(AcknoledgeService acknoledgeService, long userId) throws RuntimeException {
 
         // call flush method to force not completed collections to be processed
         for (Collector collector : processingCollectors) {
@@ -133,6 +133,6 @@ public class CloudService implements Service {
         LOGGER.info("cloud service has finished the work for process id " + userId + ".");
 
         executorService.shutdown();
-        target.sendAckSuccess();
+        acknoledgeService.sendAckSuccess();
     }
 }

@@ -2,7 +2,7 @@ package com.contrastofbeauty.tutorial.services;
 
 import com.contrastofbeauty.tutorial.api.collectors.Collector;
 import com.contrastofbeauty.tutorial.api.domain.Callback;
-import com.contrastofbeauty.tutorial.api.domain.Target;
+import com.contrastofbeauty.tutorial.api.domain.AcknoledgeService;
 import com.contrastofbeauty.tutorial.api.services.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -106,7 +106,7 @@ public class CloudService implements Service {
     }
 
     @Override
-    public void saveObjectCompleted(Target target, long userId) throws RuntimeException {
+    public void saveObjectCompleted(AcknoledgeService acknoledgeService, long userId) throws RuntimeException {
 
         if (!isUserConnected(userId)) {
             throw new IllegalArgumentException("User with id " + userId + " has not open any connection, please open a connection before trying to save.");
@@ -126,10 +126,10 @@ public class CloudService implements Service {
                 LOGGER.info(taskResult + " tweets have been posted to Twitter.");
             } catch (InterruptedException e) {
                 LOGGER.error(e);
-                target.sendAckFailed(new RuntimeException(e));
+                acknoledgeService.sendAckFailed(new RuntimeException(e));
             } catch (ExecutionException e) {
                 LOGGER.error(e);
-                target.sendAckFailed(new RuntimeException(e));
+                acknoledgeService.sendAckFailed(new RuntimeException(e));
             }
         }
 
@@ -141,6 +141,6 @@ public class CloudService implements Service {
         LOGGER.info("cloud service has finished the work for process id " + userId + ".");
 
         executorService.shutdown();
-        target.sendAckSuccess();
+        acknoledgeService.sendAckSuccess();
     }
 }
