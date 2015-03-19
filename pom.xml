@@ -14,6 +14,7 @@
         <module>exercise-api</module>
         <module>exercise-working</module>
         <module>exercise-to-be-corrected</module>
+        <module>exercise-folder-structure</module>
     </modules>
 
     <properties>
