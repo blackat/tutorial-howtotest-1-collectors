@@ -84,4 +84,9 @@ public class TweetCollector implements Collector {
     public void setNewBufferSize(int bufferSize) {
         customBufferSize = bufferSize;
     }
+
+    @Override
+    public int getListSizeByUserId(long userId) {
+        return processingList.get(userId).size();
+    }
 }

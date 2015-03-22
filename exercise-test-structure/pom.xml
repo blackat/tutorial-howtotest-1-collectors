@@ -8,10 +8,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>exercise-folder-structure</artifactId>
+    <artifactId>exercise-test-structure</artifactId>
     <packaging>jar</packaging>
 
-    <name>tutorial-howtotest-1-collectors :: folder-structure</name>
+    <name>tutorial-howtotest-1-collectors :: test-structure</name>
 
     <dependencies>
         <!-- H2 -->

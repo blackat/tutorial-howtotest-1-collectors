@@ -13,4 +13,6 @@ public interface Collector {
     void setCallbackFunction(Callback callback);
 
     void setNewBufferSize(int bufferSize);
+
+    int getListSizeByUserId(long userId);
 }
