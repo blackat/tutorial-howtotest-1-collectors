@@ -63,7 +63,7 @@ public class TweetCollector implements Collector {
         if (callbackFunction != null) {
             callbackFunction.addTask(tweetTask, userId);
         } else {
-            throw new IllegalArgumentException("Callback function must be set by the service.");
+            throw new IllegalArgumentException("Callback function is null, it must be set by the service.");
         }
     }
 
