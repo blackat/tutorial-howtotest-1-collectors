@@ -5,7 +5,7 @@ import com.contrastofbeauty.tutorial.api.domain.AcknoledgeService;
 
 public class AcknoledgeServiceImpl implements AcknoledgeService {
 
-    private final static Logger LOGGER = Logger.getLogger(AcknoledgeServiceImpl.class);
+    private final static Logger logger = Logger.getLogger(AcknoledgeServiceImpl.class);
 
     public AcknoledgeServiceImpl() {
 
@@ -13,13 +13,13 @@ public class AcknoledgeServiceImpl implements AcknoledgeService {
 
     @Override
     public void sendAckFailed(RuntimeException exception) {
-        LOGGER.error(exception);
+        logger.error(exception);
         System.exit(1);
     }
 
     @Override
     public void sendAckSuccess() {
-        LOGGER.info("shout down the cloud.");
+        logger.info("shout down the cloud.");
         System.exit(0);
     }
 }

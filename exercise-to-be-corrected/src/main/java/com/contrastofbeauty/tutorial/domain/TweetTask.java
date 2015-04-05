@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 
 public class TweetTask implements Callable<Long> {
 
-    private final static Logger LOGGER = Logger.getLogger(TweetTask.class);
+    private final static Logger logger = Logger.getLogger(TweetTask.class);
 
     private List<Tweet> processingList;
 
@@ -17,10 +17,10 @@ public class TweetTask implements Callable<Long> {
     @Override
     public Long call() throws Exception {
 
-        LOGGER.info("task is going to be executed, tweets are going to be posted.");
+        logger.info("task is going to be executed, tweets are going to be posted.");
 
         for(Tweet t : processingList) {
-            LOGGER.info("tweet " + "\"" + t.getText() + "\"" + " has been posted.");
+            logger.info("tweet " + "\"" + t.getText() + "\"" + " has been posted.");
         }
 
         return Long.valueOf(processingList.size());
