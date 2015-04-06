@@ -110,15 +110,6 @@ public class CloudServiceTest {
     }
 
     @Test
-    public void testSaveObjectUserNotConnected() throws Exception {
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("User with id " + USER_ID + " has not open any connection, please open a connection " +
-                "before trying to save.");
-
-        cloudService.saveObject(mock(Callable.class), USER_ID);
-    }
-
-    @Test
     public void testSaveObjectWithOverrideGoldenPath() throws Exception {
 
         final AtomicBoolean accepted = new AtomicBoolean();
@@ -172,6 +163,16 @@ public class CloudServiceTest {
 
         cloudService.saveObject(new Object(), USER_ID);
     }
+
+    @Test
+    public void testSaveObjectUserNotConnected() throws Exception {
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("User with id " + USER_ID + " has not open any connection, please open a connection " +
+                "before trying to save.");
+
+        cloudService.saveObject(mock(Callable.class), USER_ID);
+    }
+
 
     @Test
     public void testSaveObjectCompletedUserNotConnectedThrowException() throws Exception {
