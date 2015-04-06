@@ -9,12 +9,16 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -63,44 +67,45 @@ public class TweetCollectorTest {
         collector.flush(USER_ID);
     }
 
-    /*@Test
-    public void testFlushWithSpyGoldenPath() throws Exception {
+    /*
+   @Test
+   public void testFlushWithSpyGoldenPath() throws Exception {
 
-        TweetCollector spyOnTweetCollector = Mockito.spy(TweetCollector.class);
+       TweetCollector spyOnTweetCollector = Mockito.spy(TweetCollector.class);
 
-        spyOnTweetCollector.setCallbackFunction(callbackFunctionMock);
-        doReturn(new TweetTask(new ArrayList<Tweet>())).when(spyOnTweetCollector).getTweetTask(USER_ID);
+       spyOnTweetCollector.setCallbackFunction(callbackFunctionMock);
+       doReturn(new TweetTask(new ArrayList<Tweet>())).when(spyOnTweetCollector).getTweetTask(USER_ID);
 
-        spyOnTweetCollector.flush(USER_ID);
+       spyOnTweetCollector.flush(USER_ID);
 
-        verify(callbackFunctionMock, times(1)).addTask(any(TweetTask.class), anyInt());
-    }
+       verify(callbackFunctionMock, times(1)).addTask(any(TweetTask.class), anyInt());
+   }
 
-    @Test
-    public void testFlushWithOverrideGoldenPath() throws Exception {
+       @Test
+       public void testFlushWithOverrideGoldenPath() throws Exception {
 
-        final AtomicBoolean taskAdded = new AtomicBoolean();
+           final AtomicBoolean taskAdded = new AtomicBoolean();
 
-        Callback callbackFunction = new CallbackImpl(null){
-            @Override
-            public void addTask(TweetTask tweetTask, long userId) {
-                taskAdded.set(true);
-            }
-        };
+           Callback callbackFunction = new CallbackImpl(null){
+               @Override
+               public void addTask(TweetTask tweetTask, long userId) {
+                   taskAdded.set(true);
+               }
+           };
 
-        TweetCollector collector = new TweetCollector(){
-            @Override
-            protected TweetTask getTweetTask(long userId) {
-                return new TweetTask(new ArrayList<Tweet>());
-            }
-        };
+           TweetCollector collector = new TweetCollector(){
+               @Override
+               protected TweetTask getTweetTask(long userId) {
+                   return new TweetTask(new ArrayList<Tweet>());
+               }
+           };
 
-        collector.setCallbackFunction(callbackFunction);
-        collector.flush(USER_ID);
+           collector.setCallbackFunction(callbackFunction);
+           collector.flush(USER_ID);
 
-        assertTrue(taskAdded.get());
-    }
-*/
+           assertTrue(taskAdded.get());
+       }
+   */
     @Test
     public void testPostFlush() throws Exception {
 
