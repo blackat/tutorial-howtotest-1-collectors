@@ -4,6 +4,7 @@ import com.contrastofbeauty.tutorial.api.collectors.Collector;
 import com.contrastofbeauty.tutorial.api.domain.Callback;
 import com.contrastofbeauty.tutorial.domain.Tweet;
 import com.contrastofbeauty.tutorial.domain.TweetTask;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,6 @@ public class TweetCollector implements Collector {
     private int customBufferSize;
 
     public TweetCollector() {
-
     }
 
     @Override
@@ -73,5 +73,11 @@ public class TweetCollector implements Collector {
     @Override
     public int getListSizeByUserId(long userId) {
         return 0;
+    }
+
+    protected TweetTask getTweetTask(long userId) {
+        TweetTask tweetTask = new TweetTask(new ArrayList<>(processingList.get(userId)));
+        processingList.get(userId).clear();
+        return tweetTask;
     }
 }
