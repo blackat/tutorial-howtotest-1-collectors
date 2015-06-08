@@ -43,7 +43,7 @@ public class TweetCollector implements Collector {
 
     @Override
     public void flush(long userId) {
-        TweetTask tweetTask = new TweetTask(new ArrayList<>(processingList.get(userId)));
+        TweetTask tweetTask = getTweetTask(userId);
 
         // clean the list
         processingList.get(userId).clear();
