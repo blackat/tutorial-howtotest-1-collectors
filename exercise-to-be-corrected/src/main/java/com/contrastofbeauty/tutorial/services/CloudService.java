@@ -1,20 +1,16 @@
 package com.contrastofbeauty.tutorial.services;
 
 import com.contrastofbeauty.tutorial.api.collectors.Collector;
-import com.contrastofbeauty.tutorial.domain.CallbackImpl;
-import com.contrastofbeauty.tutorial.api.domain.Callback;
 import com.contrastofbeauty.tutorial.api.domain.AcknoledgeService;
+import com.contrastofbeauty.tutorial.api.domain.Callback;
 import com.contrastofbeauty.tutorial.api.services.Service;
+import org.apache.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import org.apache.log4j.Logger;
+import java.util.concurrent.*;
 
 public class CloudService implements Service {
 
@@ -28,15 +24,17 @@ public class CloudService implements Service {
 
     private Map<Long, List<Future>> processingFutureList;
 
-    private Callback callbackFunction = new CallbackImpl(this);
+    private Callback callbackFunction;
 
-    public CloudService() {
+    public CloudService(Callback callback) {
 
         // 3) error: NPE will be produce without init the map - - REMOVE THIS LINE TO HAVE THE ERROR
         processingFutureList = new HashMap<>();
 
         // 4) error: NPE will be produce without init the map - - REMOVE THIS LINE TO HAVE THE ERROR
         processingCollectors = new ArrayList<>();
+
+        callbackFunction = callback;
     }
 
     @Override
@@ -71,6 +69,7 @@ public class CloudService implements Service {
 
     @Override
     public boolean isUserConnected(long userId) throws RuntimeException {
+
         return processingFutureList.get(userId) != null;
     }
 
@@ -88,9 +87,8 @@ public class CloudService implements Service {
 
         boolean accepted = false;
 
-        if (processingFutureList.get(userId) == null) {
-            throw new IllegalArgumentException("User with id " + userId + " has not open any connection, please open " +
-                    "a connection before trying to save.");
+        if (!isUserConnected(userId)) {
+            throw new IllegalArgumentException("User with id " + userId + " has not open any connection, please open a connection before trying to save.");
         }
 
         for (Collector collector : processingCollectors) {
@@ -106,6 +104,10 @@ public class CloudService implements Service {
     @Override
     public void saveObjectCompleted(AcknoledgeService acknoledgeService, long userId) throws RuntimeException {
 
+        if (!isUserConnected(userId)) {
+            throw new IllegalArgumentException("User with id " + userId + " has not open any connection, please open a connection before trying to save.");
+        }
+
         // call flush method to force not completed collections to be processed
         for (Collector collector : processingCollectors) {
             collector.flush(userId);
@@ -120,14 +122,16 @@ public class CloudService implements Service {
                 LOGGER.info(taskResult + " tweets have been posted to Twitter.");
             } catch (InterruptedException e) {
                 LOGGER.error(e);
+                acknoledgeService.sendAckFailed(new RuntimeException(e));
             } catch (ExecutionException e) {
                 LOGGER.error(e);
+                acknoledgeService.sendAckFailed(new RuntimeException(e));
             }
         }
 
         // execute some optional post processing once data have been saved
-        for (Collector mySaver : processingCollectors) {
-            mySaver.postFlush(userId);
+        for (Collector collector : processingCollectors) {
+            collector.postFlush(userId);
         }
 
         LOGGER.info("cloud service has finished the work for process id " + userId + ".");
