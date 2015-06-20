@@ -12,8 +12,6 @@ import java.util.concurrent.Callable;
 
 public class TweetCollector implements Collector {
 
-    public static final int PROCESSING_LIST_BUFFER_SIZE = 100;
-
     private Map<Long, List<Tweet>> processingList;
 
     private Callback callbackFunction;

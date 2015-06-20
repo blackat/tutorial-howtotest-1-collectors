@@ -3,13 +3,16 @@ package com.contrastofbeauty.tutorial.api.collectors;
 import com.contrastofbeauty.tutorial.api.domain.Callback;
 
 /**
- * A collector provides a transparent data structure able to collect objects of a given type with respect a user id.
+ * * A collector provides a transparent data structure able to collect objects of a given type with respect a user id.
  * Once the list of objects for a given user id reaches the buffer size the flush method is invoked to empty the list
  * and pass the objects via a callback function.
  * <p/>
+ * <p/>
  * The callback function must be provided in order to make the flush method work.
+ *
+ * @param <T> the type of the objects accepted by the collector
  */
-public interface Collector {
+public interface CollectorGenerics<T> {
 
     /**
      * The given buffer size.
@@ -24,7 +27,7 @@ public interface Collector {
      * @param userId the id of the user
      * @return true if the object is accepted and then addde to the data structure of the collector, false otherwise.
      */
-    boolean accept(Object object, long userId);
+    boolean accept(T object, long userId);
 
     /**
      * Invoke the callback function to pass all the objects of the list for the given user id and then empty the list of
