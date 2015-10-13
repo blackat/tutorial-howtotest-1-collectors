@@ -24,7 +24,7 @@ public interface Collector {
      * @param userId the id of the user
      * @return true if the object is accepted and then addde to the data structure of the collector, false otherwise.
      */
-    boolean accept(Object object, long userId);
+    boolean accept(final Object object, final long userId);
 
     /**
      * Invoke the callback function to pass all the objects of the list for the given user id and then empty the list of
@@ -32,28 +32,28 @@ public interface Collector {
      *
      * @param userId the id of the user to select the list of objects
      */
-    void flush(long userId);
+    void flush(final long userId);
 
     /**
      * Execute some operations after the flush method is invoked.
      *
      * @param userId the id of the user
      */
-    void postFlush(long userId);
+    void postFlush(final long userId);
 
     /**
      * Set the callback function.
      *
      * @param callback the callback function to be set
      */
-    void setCallbackFunction(Callback callback);
+    void setCallbackFunction(final Callback callback);
 
     /**
      * A default buffer size or threshold is given by the interface but it can be overridden by this setter.
      *
      * @param bufferSize the new size of the buffer
      */
-    void setNewBufferSize(int bufferSize);
+    void setNewBufferSize(final int bufferSize);
 
     /**
      * Return the size of the list for a given user id.
@@ -61,5 +61,5 @@ public interface Collector {
      * @param userId the id of the user
      * @return the size of the list
      */
-    int getListSizeByUserId(long userId);
+    int getListSizeByUserId(final long userId);
 }

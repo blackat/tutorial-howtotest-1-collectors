@@ -2,7 +2,6 @@ package com.contrastofbeauty.tutorial.collectors;
 
 import com.contrastofbeauty.tutorial.api.collectors.Collector;
 import com.contrastofbeauty.tutorial.api.domain.Callback;
-import com.contrastofbeauty.tutorial.domain.CallbackImpl;
 import com.contrastofbeauty.tutorial.domain.Tweet;
 import com.contrastofbeauty.tutorial.domain.TweetTask;
 
@@ -20,6 +19,7 @@ public class TweetCollector implements Collector {
     private int customBufferSize;
 
     public TweetCollector() {
+        processingList = new HashMap<>();
     }
 
     @Override
@@ -27,6 +27,9 @@ public class TweetCollector implements Collector {
 
         if (object instanceof Tweet) {
 
+            if (processingList.get(userId) == null) {
+                processingList.put(userId, new ArrayList<Tweet>());
+            }
             processingList.get(userId).add((Tweet) object);
 
             if (customBufferSize != 0) {
@@ -36,6 +39,7 @@ public class TweetCollector implements Collector {
             } else if (processingList.get(userId).size() == PROCESSING_LIST_BUFFER_SIZE) {
                 flush(userId);
             }
+            return true;
         }
 
         return false;

@@ -16,6 +16,7 @@
         <module>exercise-to-be-corrected</module>
         <module>exercise-test-structure</module>
         <module>exercise-tdd</module>
+        <module>exercise-tdd-to-corrected</module>
     </modules>
 
     <properties>
